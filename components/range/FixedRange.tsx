@@ -69,7 +69,7 @@ export function FixedRange({
       maxHandle={{
         percent: indexToPercent(indices.max, values.length),
         ariaLabel: "Valor máximo",
-        values: { min, max: values[values.length - 1], currentValue: max },
+        values: { min, max: values[lastIndex], currentValue: max },
         valueText: formatValue(max),
       }}
       minLabel={formatValue(min)}

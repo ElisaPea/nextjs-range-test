@@ -7,7 +7,7 @@ import {
   valueToPercent,
 } from "@/utils/range";
 import { RangeTrack } from "./RangeTrack";
-import type { HandleId } from "../../hooks/useRangeDrag";
+import type { HandleId } from "@/hooks/useRangeDrag";
 import { EditableLabel } from "./EditableLabel";
 import type { KeyAction } from "@/utils/keyboard";
 

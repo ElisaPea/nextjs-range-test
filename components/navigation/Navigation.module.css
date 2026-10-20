@@ -11,15 +11,13 @@
     gap: 32px;
 }
 
-
 .navigationLink {
     text-decoration: none;
-    color: var(--color-text)
+    color: var(--color-text);
 }
 
 .navigationLink:hover {
     text-decoration: underline;
-    color: var(--color-text)
 }
 
 .navigationLink[aria-current="page"] {

@@ -9,8 +9,6 @@ coverage/
 out/
 next-env.d.ts
 
-# testing
-coverage/
 
 # env
 .env*.local

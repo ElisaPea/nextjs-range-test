@@ -1,8 +1,8 @@
 {
   "name": "technical-test-mango-2",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "technical test for mango",
+  "private": true,
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit",
     "dev": "next dev -p 8080",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8080",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
