@@ -21,3 +21,7 @@
     text-decoration: underline;
     color: var(--color-text)
 }
+
+.navigationLink[aria-current="page"] {
+  font-weight: 700;
+}

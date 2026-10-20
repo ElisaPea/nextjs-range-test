@@ -9,6 +9,7 @@ import {
 import { RangeTrack } from "./RangeTrack";
 import type { HandleId } from "../../hooks/useRangeDrag";
 import { EditableLabel } from "./EditableLabel";
+import type { KeyAction } from "@/utils/keyboard";
 
 export function ContinuousRange({
   min,
@@ -44,10 +45,19 @@ export function ContinuousRange({
     setHandleValue(handle, percentToValue(percent, min, max));
   };
 
+  const handleKey = (handle: HandleId, action: KeyAction) => {
+    if (action.type === "edge") {
+      setHandleValue(handle, action.edge === "start" ? min : max);
+      return;
+    }
+    setHandleValue(handle, value[handle] + action.steps * step);
+  };
+
   return (
     <RangeTrack
       label={label}
       onHandleMove={handleMove}
+      onHandleKey={handleKey}
       minHandle={{
         percent: valueToPercent(value.min, min, max),
         ariaLabel: "Valor mínimo",

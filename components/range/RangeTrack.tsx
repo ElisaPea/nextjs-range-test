@@ -1,10 +1,11 @@
-import { useRef, type ReactNode } from "react";
+import { useRef, type KeyboardEvent, type ReactNode } from "react";
 import styles from "./Range.module.css";
 import {
   useRangeDrag,
   type HandleDragProps,
   type HandleId,
-} from "../../hooks/useRangeDrag";
+} from "@/hooks/useRangeDrag";
+import { getKeyAction, type KeyAction } from "@/utils/keyboard";
 
 export interface TrackHandle {
   /** Posición en el track (0-100) */
@@ -21,8 +22,13 @@ interface RangeTrackProps {
   minLabel: ReactNode;
   maxLabel: ReactNode;
   onHandleMove: (handle: HandleId, percent: number) => void;
+  onHandleKey: (handle: HandleId, action: KeyAction) => void;
 }
-type HandleProps = TrackHandle & HandleDragProps & { isDragging: boolean };
+type HandleProps = TrackHandle &
+  HandleDragProps & {
+    isDragging: boolean;
+    onKeyDown: (event: KeyboardEvent<HTMLElement>) => void;
+  };
 
 function Handle({
   percent,
@@ -58,12 +64,21 @@ export function RangeTrack({
   minLabel,
   maxLabel,
   onHandleMove,
+  onHandleKey,
 }: RangeTrackProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const { activeHandle, getHandleProps } = useRangeDrag({
     trackRef,
     onDrag: onHandleMove,
   });
+
+  const handleKeyDown =
+    (handle: HandleId) => (event: KeyboardEvent<HTMLElement>) => {
+      const action = getKeyAction(event.key);
+      if (!action) return;
+      event.preventDefault();
+      onHandleKey(handle, action);
+    };
 
   return (
     <div className={styles.range} role="group" aria-label={label}>
@@ -80,11 +95,13 @@ export function RangeTrack({
         <Handle
           {...minHandle}
           isDragging={activeHandle === "min"}
+          onKeyDown={handleKeyDown("min")}
           {...getHandleProps("min")}
         />
         <Handle
           {...maxHandle}
           isDragging={activeHandle === "max"}
+          onKeyDown={handleKeyDown("max")}
           {...getHandleProps("max")}
         />
       </div>

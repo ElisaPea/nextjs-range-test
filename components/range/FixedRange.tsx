@@ -8,6 +8,7 @@ import {
 } from "@/utils/range";
 import { RangeTrack } from "./RangeTrack";
 import type { HandleId } from "@/hooks/useRangeDrag";
+import type { KeyAction } from "@/utils/keyboard";
 
 export function FixedRange({
   values,
@@ -27,9 +28,7 @@ export function FixedRange({
 
   const lastIndex = values.length - 1;
 
-  const handleMove = (handle: HandleId, percent: number) => {
-    const newIndex = percentToIndex(percent, values.length);
-
+  const setHandleIndex = (handle: HandleId, newIndex: number) => {
     const next =
       handle === "min"
         ? { ...indices, min: clamp(newIndex, 0, indices.max - 1) }
@@ -41,6 +40,18 @@ export function FixedRange({
     onChange?.({ min: values[next.min], max: values[next.max] });
   };
 
+  const handleMove = (handle: HandleId, percent: number) => {
+    setHandleIndex(handle, percentToIndex(percent, values.length));
+  };
+
+  const handleKey = (handle: HandleId, action: KeyAction) => {
+    if (action.type === "edge") {
+      setHandleIndex(handle, action.edge === "start" ? 0 : lastIndex);
+      return;
+    }
+    setHandleIndex(handle, indices[handle] + action.steps);
+  };
+
   const min = values[indices.min];
   const max = values[indices.max];
 
@@ -48,6 +59,7 @@ export function FixedRange({
     <RangeTrack
       label={label}
       onHandleMove={handleMove}
+      onHandleKey={handleKey}
       minHandle={{
         percent: indexToPercent(indices.min, values.length),
         ariaLabel: "Valor mínimo",
