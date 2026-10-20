@@ -13,7 +13,7 @@ export function valueToPercent(
   return ((clamp(value, min, max) - min) / (max - min)) * 100;
 }
 
-/** Convierte un porcentaje (0-100) a un valor dentro de un intervalo dado (min, max). */
+/** Convierte un porcentaje (0-100) a un valor dentro de un intervalo dado (min, max) */
 export function percentToValue(
   percent: number,
   min: number,
@@ -22,13 +22,13 @@ export function percentToValue(
   return min + (clamp(percent, 0, 100) / 100) * (max - min);
 }
 
-/** Redondea un valor a un múltiplo de step, centrado en min. */
+/** Redondea un valor a un múltiplo de step, centrado en min */
 export function roundToStep(value: number, step: number, min = 0): number {
   if (step <= 0) return value;
   return Math.round((value - min) / step) * step + min;
 }
 
-/** Calcula el porcentaje de la posición del puntero respecto al ancho del elemento. */
+/** Calcula el porcentaje de la posición del puntero respecto al ancho del elemento */
 export function getPointerPercent(
   clientX: number,
   rect: Pick<DOMRect, "left" | "width">,
@@ -56,7 +56,7 @@ export function indexToPercent(index: number, count: number): number {
   return (index / (count - 1)) * 100;
 }
 
-/** Calcula el índice que ocupa un porcentaje en un rango de conteo. */
+/** Calcula el índice que ocupa un porcentaje en un rango de conteo */
 export function percentToIndex(percent: number, count: number): number {
   if (count <= 1) return 0;
   return Math.round((clamp(percent, 0, 100) / 100) * (count - 1));
