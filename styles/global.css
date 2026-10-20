@@ -1,0 +1,48 @@
+/* Variables globales */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1b2540;
+  --color-primary: #1e3a6e;
+  --color-primary-soft: #e3e9f5;
+  --color-border: #c7d2e5;
+  --color-focus: #4f7bd9;
+
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 4px rgba(30, 58, 110, 0.25);
+
+  --font-sans:
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+
+/** Estilos generales minimos*/
+body {
+  min-height: 100vh;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+}

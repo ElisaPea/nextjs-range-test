@@ -37,11 +37,8 @@ export function getPointerPercent(
   return clamp(((clientX - rect.left) / rect.width) * 100, 0, 100);
 }
 
-/** Busca el índice del valor más cercano en un array ordenado. */
-export function findClosestIndex(
-  values: readonly number[],
-  target: number,
-): number {
+/** Busca el índice del valor más cercano en un array ordenado y lo retorna */
+export function findClosestIndex(values: number[], target: number): number {
   if (values.length === 0) return -1;
 
   return values.reduce(
@@ -53,7 +50,7 @@ export function findClosestIndex(
   );
 }
 
-/** Calcula el porcentaje que ocupa un índice en un rango de conteo (0-100). */
+/** Calcula el porcentaje que ocupa un índice en un rango de conteo (0-100) */
 export function indexToPercent(index: number, count: number): number {
   if (count <= 1) return 0;
   return (index / (count - 1)) * 100;
