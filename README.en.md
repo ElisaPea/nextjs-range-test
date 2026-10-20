@@ -37,6 +37,8 @@ pnpm dev              # or: npm run dev   → http://localhost:8080
 | `pnpm typecheck`              | Type checking (`tsc --noEmit`)           |
 | `pnpm lint` / `pnpm lint:fix` | ESLint                                   |
 
+With npm, use npm run "script" (e.g. npm run typecheck).
+
 Dependency versions are pinned (`saveExact` + `pnpm-lock.yaml`) so installs are reproducible.
 
 ## Routes

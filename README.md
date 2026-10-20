@@ -23,7 +23,7 @@ npm install -g pnpm   # o: corepack enable
 ## Instalación y arranque
 
 ```bash
-pnpm install.         # o: npm install
+pnpm install         # o: npm install
 pnpm dev              # o: npm run dev   → http://localhost:8080
 ```
 
@@ -36,6 +36,8 @@ pnpm dev              # o: npm run dev   → http://localhost:8080
 | `pnpm test:coverage`          | Informe de cobertura                             |
 | `pnpm typecheck`              | Comprobación de tipos (`tsc --noEmit`)           |
 | `pnpm lint` / `pnpm lint:fix` | ESLint                                           |
+
+Con npm, usa npm run "script" (por ejemplo npm run typecheck)
 
 Las versiones de las dependencias están fijadas (`saveExact` + `pnpm-lock.yaml`) para que las instalaciones sean reproducibles.
 
