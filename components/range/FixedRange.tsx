@@ -7,13 +7,14 @@ import {
   percentToIndex,
 } from "@/utils/range";
 import { RangeTrack } from "./RangeTrack";
-import type { HandleId } from "../../hooks/useRangeDrag";
+import type { HandleId } from "@/hooks/useRangeDrag";
 
 export function FixedRange({
   values,
   defaultValue,
   label,
   onChange,
+  formatValue = String,
 }: FixedRangeProps) {
   const [indices, setIndices] = useState(() => ({
     min: defaultValue ? findClosestIndex(values, defaultValue.min) : 0,
@@ -51,16 +52,16 @@ export function FixedRange({
         percent: indexToPercent(indices.min, values.length),
         ariaLabel: "Valor mínimo",
         values: { min: values[0], max, currentValue: min },
-        valueText: String(min),
+        valueText: formatValue(min),
       }}
       maxHandle={{
         percent: indexToPercent(indices.max, values.length),
         ariaLabel: "Valor máximo",
         values: { min, max: values[values.length - 1], currentValue: max },
-        valueText: String(max),
+        valueText: formatValue(max),
       }}
-      minLabel={min}
-      maxLabel={max}
+      minLabel={formatValue(min)}
+      maxLabel={formatValue(max)}
     />
   );
 }

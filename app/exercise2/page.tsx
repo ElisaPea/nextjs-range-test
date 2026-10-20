@@ -1,20 +1,15 @@
-import { Range } from "@/components/range";
+import type { Metadata } from "next";
+import { Exercise2Range } from "./Exercise2Range";
+
+export const metadata: Metadata = {
+  title: "Exercise 2 · Fixed Values Range",
+};
 
 export default function Exercise2Page() {
   return (
-    <main
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-        alignItems: "center",
-      }}
-    >
-      <Range
-        mode="fixed"
-        values={[1.99, 5.99, 10.99, 30.99, 50.99, 70.99]}
-        label="Precio 2"
-      />
+    <main>
+      <h1>Exercise 2: Fixed Values Range</h1>
+      <Exercise2Range />
     </main>
   );
 }

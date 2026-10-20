@@ -35,6 +35,7 @@ export interface FixedRangeProps extends BaseRangeProps {
   mode: "fixed";
   values: number[];
   defaultValue?: RangeValue;
+  formatValue?: (value: number) => string;
 }
 
 /** Tipado del componente Range */
