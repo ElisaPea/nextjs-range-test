@@ -4,7 +4,7 @@ import {
   useRangeDrag,
   type HandleDragProps,
   type HandleId,
-} from "./useRangeDrag";
+} from "../../hooks/useRangeDrag";
 
 export interface TrackHandle {
   /** Posición en el track (0-100) */

@@ -70,3 +70,32 @@
   outline: 2px solid var(--color-focus);
   outline-offset: 3px;
 }
+
+.labelButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.labelInput {
+  width: 3.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  text-align: center;
+}
+
+.labelInput:focus {
+  outline: none;
+}
+
+.label:focus-within {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+

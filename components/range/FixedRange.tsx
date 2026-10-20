@@ -7,7 +7,7 @@ import {
   percentToIndex,
 } from "@/utils/range";
 import { RangeTrack } from "./RangeTrack";
-import type { HandleId } from "./useRangeDrag";
+import type { HandleId } from "../../hooks/useRangeDrag";
 
 export function FixedRange({
   values,

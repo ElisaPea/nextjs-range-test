@@ -7,7 +7,8 @@ import {
   valueToPercent,
 } from "@/utils/range";
 import { RangeTrack } from "./RangeTrack";
-import type { HandleId } from "./useRangeDrag";
+import type { HandleId } from "../../hooks/useRangeDrag";
+import { EditableLabel } from "./EditableLabel";
 
 export function ContinuousRange({
   min,
@@ -22,18 +23,25 @@ export function ContinuousRange({
     max: clamp(defaultValue?.max ?? max, min, max),
   }));
 
-  const handleMove = (handle: HandleId, percent: number) => {
-    const newValue = roundToStep(percentToValue(percent, min, max), step, min);
-
-    const next: RangeValue =
-      handle === "min"
-        ? { ...value, min: clamp(newValue, min, value.max - step) }
-        : { ...value, max: clamp(newValue, value.min + step, max) };
-
+  const updateValue = (next: RangeValue) => {
     if (next.min === value.min && next.max === value.max) return;
-
     setValue(next);
     onChange?.(next);
+  };
+
+  /** Aplica redondeo, límites y regla de no cruce a un valor nuevo para un handle */
+  const setHandleValue = (handle: HandleId, newValue: number) => {
+    const rounded = roundToStep(newValue, step, min);
+
+    updateValue(
+      handle === "min"
+        ? { ...value, min: clamp(rounded, min, value.max - step) }
+        : { ...value, max: clamp(rounded, value.min + step, max) },
+    );
+  };
+
+  const handleMove = (handle: HandleId, percent: number) => {
+    setHandleValue(handle, percentToValue(percent, min, max));
   };
 
   return (
@@ -50,8 +58,20 @@ export function ContinuousRange({
         ariaLabel: "Valor máximo",
         values: { min: value.min, max, currentValue: value.max },
       }}
-      minLabel={value.min}
-      maxLabel={value.max}
+      minLabel={
+        <EditableLabel
+          value={value.min}
+          ariaLabel="Valor mínimo"
+          onCommit={(newValue) => setHandleValue("min", newValue)}
+        />
+      }
+      maxLabel={
+        <EditableLabel
+          value={value.max}
+          ariaLabel="Valor máximo"
+          onCommit={(newValue) => setHandleValue("max", newValue)}
+        />
+      }
     />
   );
 }

@@ -1,22 +1,15 @@
-import { Range } from "@/components/range";
+import type { Metadata } from "next";
+import { Exercise1Range } from "./Exercise1Range";
+
+export const metadata: Metadata = {
+  title: "Exercise 1 · Normal Range",
+};
 
 export default function Exercise1Page() {
   return (
-    <main
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-        alignItems: "center",
-      }}
-    >
-      <Range
-        mode="continuous"
-        min={1}
-        max={100}
-        label="Precio 1"
-        defaultValue={{ min: 20, max: 80 }}
-      />
+    <main>
+      <h1>Exercise 1: Normal Range</h1>
+      <Exercise1Range />
     </main>
   );
 }
