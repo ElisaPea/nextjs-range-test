@@ -8,8 +8,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <Navigation />
-      <body>{children}</body>
+      <body>
+        <Navigation />
+        {children}
+      </body>
     </html>
   );
 }
