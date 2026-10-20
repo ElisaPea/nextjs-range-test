@@ -1,3 +1,4 @@
+import { Navigation } from "@/components/navigation/Navigation";
 import "@/styles/global.css";
 
 export default function RootLayout({
@@ -7,6 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
+      <Navigation />
       <body>{children}</body>
     </html>
   );
